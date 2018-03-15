@@ -7,38 +7,36 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseListAdapter;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class MainActivity extends Activity {
+public class ViewListActivity extends Activity {
 
 
     private ListView contactListView;
-    private FirebaseListAdapter<Contact> firebaseAdapter;
+    private FirebaseListAdapter<Buiness> firebaseAdapter;
+    private MyApplicationData appState;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //Get the app wide shared variables
-        MyApplicationData appData = (MyApplicationData)getApplication();
-
-        //Set-up Firebase
-        appData.firebaseDBInstance = FirebaseDatabase.getInstance();
-        appData.firebaseReference = appData.firebaseDBInstance.getReference("contacts");
+        appState = (MyApplicationData)getApplicationContext();
 
         //Get the reference to the UI contents
         contactListView = (ListView) findViewById(R.id.listView);
 
         //Set up the List View
-       firebaseAdapter = new FirebaseListAdapter<Contact>(this, Contact.class,
-                android.R.layout.simple_list_item_1, appData.firebaseReference) {
+       firebaseAdapter = new FirebaseListAdapter<Buiness>(this, Buiness.class,
+                android.R.layout.simple_list_item_1, appState.firebaseReference) {
             @Override
-            protected void populateView(View v, Contact model, int position) {
+            protected void populateView(View v, Buiness model, int position) {
                 TextView contactName = (TextView)v.findViewById(android.R.id.text1);
-                contactName.setText(model.name);
+                contactName.setText(model.Name);
+                Toast.makeText(getApplicationContext(), model.Name, Toast.LENGTH_LONG).show();
             }
         };
         contactListView.setAdapter(firebaseAdapter);
@@ -46,7 +44,7 @@ public class MainActivity extends Activity {
             // onItemClick method is called everytime a user clicks an item on the list
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Contact person = (Contact) firebaseAdapter.getItem(position);
+                Buiness person = (Buiness) firebaseAdapter.getItem(position);
                 showDetailView(person);
             }
         });
@@ -54,17 +52,15 @@ public class MainActivity extends Activity {
 
     public void createContactButton(View v)
     {
-        Intent intent=new Intent(this, CreateContactAcitivity.class);
+        Intent intent = new Intent(this, CreateBuinessAcitivity.class);
         startActivity(intent);
     }
 
-    private void showDetailView(Contact person)
+    private void showDetailView(Buiness person)
     {
         Intent intent = new Intent(this, DetailViewActivity.class);
-        intent.putExtra("Contact", person);
+        intent.putExtra("Business", person);
         startActivity(intent);
     }
-
-
 
 }
