@@ -36,7 +36,6 @@ public class ViewListActivity extends Activity {
             protected void populateView(View v, Buiness model, int position) {
                 TextView contactName = (TextView)v.findViewById(android.R.id.text1);
                 contactName.setText(model.Name);
-                Toast.makeText(getApplicationContext(), model.Name, Toast.LENGTH_LONG).show();
             }
         };
         contactListView.setAdapter(firebaseAdapter);

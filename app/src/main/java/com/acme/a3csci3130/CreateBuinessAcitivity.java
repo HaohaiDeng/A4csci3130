@@ -28,7 +28,7 @@ public class CreateBuinessAcitivity extends Activity {
         IDField = (EditText) findViewById(R.id.id);
         nameField = (EditText) findViewById(R.id.name);
         PBField = (EditText) findViewById(R.id.PB);
-        AddressField = (EditText) findViewById(R.id.Address_U);
+        AddressField = (EditText) findViewById(R.id.Address);
         ProvinceField = (EditText) findViewById(R.id.province);
 
     }
@@ -42,6 +42,7 @@ public class CreateBuinessAcitivity extends Activity {
         String PB = PBField.getText().toString();
         String address = AddressField.getText().toString();
         String province = ProvinceField.getText().toString();
+
         if (TextUtils.isEmpty(id)){
             IDField.setError("Required");
             return;
@@ -64,9 +65,9 @@ public class CreateBuinessAcitivity extends Activity {
             public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
                 if (databaseError != null) {
                     Toast.makeText(getApplicationContext(), "Some error occured, try again", Toast.LENGTH_SHORT).show();
-                    finish();
                 } else {
                     Toast.makeText(getApplicationContext(), "added to database successfully", Toast.LENGTH_SHORT).show();
+                    finish();
                 }
             }
         });

@@ -20,7 +20,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/Address_U"
+        android:id="@+id/Address"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
@@ -40,7 +40,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="35dp"
         android:onClick="submitInfoButton"
-        android:text="Create Contact"
+        android:text="Create a Business"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Address_U" />
@@ -72,8 +72,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/Address_U"
-        android:layout_marginTop="42dp"
+        android:layout_below="@+id/Address"
+        android:layout_marginTop="50dp"
         android:ems="10"
         android:hint="Province"
         android:inputType="textCapCharacters|textShortMessage" />
